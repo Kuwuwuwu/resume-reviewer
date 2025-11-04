@@ -32,10 +32,15 @@ return (
       <input type="file" accept=".pdf" onChange={handleUpload} />
       {result && (
         <div className="mt-4">
-          <p>Знайдено ключових слів: {result.keywordsFound.join(', ')}</p>
-          <p>Загальна кількість слів: {result.totalWords}</p>
+          <p>📄 Слів у резюме: {result.totalWords}</p>
+          <p>🔍 Ключові слова: {result.keywordsFound.join(', ')}</p>
+          <p>📧 Email: {result.blocks.contacts.email}</p>
+          <p>📱 Телефон: {result.blocks.contacts.phone}</p>
+          <p>💼 Досвід: {result.blocks.experience.join('; ')}</p>
+          <p>🛠 Навички: {result.blocks.skills.join(', ')}</p>
         </div>
       )}
     </div>
   );
 }
+
