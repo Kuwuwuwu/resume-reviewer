@@ -23,6 +23,7 @@ function App() {
           <div className="mt-6 p-4 border rounded bg-white dark:bg-gray-800">
             <p>🔍 Знайдено ключових слів: {result.keywordsFound.join(', ')}</p>
             <p>📄 Загальна кількість слів: {result.totalWords}</p>
+            <p>Test render works!</p>
           </div>
         )}
       </div>
