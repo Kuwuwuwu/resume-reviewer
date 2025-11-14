@@ -1,4 +1,5 @@
-📄 Resume Reviewer
+📄 RESUME REVIEWER
+
 Resume Reviewer is a web application that allows users to upload a resume and receive a basic analysis — including word count, keyword detection, and a preview of the content. Built with React + Vite on the frontend and Node.js + Express on the backend, the project is fully containerized using Docker.
 
 🚀 Tech Stack
