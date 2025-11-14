@@ -1,13 +1,15 @@
 
 services:
   frontend:
-    build: ./client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     ports:
       - "5173:80"
-    depends_on:
-      - backend
 
   backend:
-    build: ./server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
