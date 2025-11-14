@@ -1,87 +1,58 @@
-# Welcome to React Router!
+📄 Resume Reviewer
+Resume Reviewer is a web application that allows users to upload a resume and receive a basic analysis — including word count, keyword detection, and a preview of the content. Built with React + Vite on the frontend and Node.js + Express on the backend, the project is fully containerized using Docker.
 
-A modern, production-ready template for building full-stack React applications using React Router.
+🚀 Tech Stack
+- Frontend: React, Vite, TailwindCSS
+- Backend: Node.js, Express
+- DevOps: Docker, CI/CD-ready
+- UI Features: Responsive design, theme switching (light/dark)
+📁 Project Structure
+resume-reviewer/
+├── client/           # Frontend (React + Vite)
+│   ├── src/
+│   ├── index.html
+│   ├── tailwind.config.js
+│   └── ...
+├── server/           # Backend (Node.js + Express)
+│   ├── routes/
+│   ├── app.js
+│   └── ...
+├── docker-compose.yml
+└── README.md
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
 
-## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
-
-```bash
+🛠️ Getting Started
+1. Install dependencies
+cd client
 npm install
-```
+cd ../server
+npm install
 
-### Development
 
-Start the development server with HMR:
-
-```bash
+2. Run locally (without Docker)
+# Frontend
+cd client
 npm run dev
-```
 
-Your application will be available at `http://localhost:5173`.
+# Backend
+cd ../server
+node app.js
 
-## Building for Production
 
-Create a production build:
+3. Run with Docker
+docker-compose up --build
 
-```bash
-npm run build
-```
 
-## Deployment
 
-### Docker Deployment
+📤 Resume Upload Features
+- Supports .txt, .pdf, .docx
+- Displays keyword matches and word count
+- Shows resume preview in-browser
 
-To build and run using Docker:
+🧪 Roadmap
+- [ ] Backend parsing of real resume content
+- [ ] Keyword scoring and tech stack matching
+- [ ] User authentication and upload history
+- [ ] Export results to PDF or JSON
 
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
