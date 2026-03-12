@@ -1,17 +1,21 @@
 📄 RESUME REVIEWER
 
-Resume Reviewer is a modern, professional web application that allows users to analyze resumes with AI-powered insights. Features a clean 2-column interface with real-time text analysis, keyword extraction, and skill identification. Built with React + Vite on the frontend and Node.js + Express on the backend.
+Resume Reviewer is a modern, professional web application that allows users to analyze resumes with AI-powered insights. Features a stunning 2-column interface with real-time text analysis, keyword extraction, and skill identification. Built with React + Vite on the frontend and Node.js + Express on the backend.
 
 🚀 Tech Stack
 - **Frontend**: React, Vite, TailwindCSS, Lucide React
 - **Backend**: Node.js, Express, PDF parsing
-- **UI**: Modern 2-column layout, responsive design, loading states
+- **UI**: Professional 2-column layout, responsive design, loading states
 - **Deployment**: Vercel-ready with optimized configuration
 
 📁 Project Structure
 resume-reviewer/
 ├── src/                    # Frontend (React + Vite)
 │   ├── components/        # Reusable UI components
+│   │   ├── Badge.jsx
+│   │   ├── InfoCard.jsx
+│   │   ├── LoadingSpinner.jsx
+│   │   └── EmptyState.jsx
 │   ├── services/          # API service layer
 │   ├── App.jsx           # Main application component
 │   └── main.jsx          # React entry point
@@ -19,6 +23,7 @@ resume-reviewer/
 │   ├── routes/           # API routes
 │   ├── controllers/      # Business logic
 │   └── app.js           # Express server
+├── api/                  # Vercel serverless functions
 ├── vercel.json          # Vercel deployment config
 └── README.md
 
@@ -30,6 +35,41 @@ resume-reviewer/
 - **Error Handling**: Graceful error states with user-friendly messages
 - **Sample Data**: "Load Sample" button for quick testing
 - **Responsive**: Works perfectly on desktop and mobile devices
+- **Component Architecture**: Modular, reusable components
+
+🎯 UI Components
+- **Header**: Professional branding with FileText icon and subtitle
+- **Left Panel**: Resume text input with "Load Sample" button and "Analyze Resume" CTA
+- **Right Panel**: Dynamic results display with:
+  - Empty state with dashed border and centered content
+  - Loading state with spinner animation
+  - Results state with organized info cards and colorful tags
+- **Badge Component**: Reusable colored badges for keywords and skills
+- **InfoCard Component**: Reusable cards with icons for structured data
+- **LoadingSpinner Component**: Dedicated loading animation component
+
+🔍 Analysis Features
+- **Contact Extraction**: Email and phone number detection
+- **Keyword Matching**: Identifies tech stack keywords (React, Node.js, etc.)
+- **Skill Extraction**: Parses skills section for relevant competencies
+- **Word Count**: Total word count analysis
+- **Structured Output**: Organized data presentation with visual tags
+
+📊 API Endpoints
+- `POST /api/analyze-text` - Analyze resume text
+- `POST /api/upload` - Upload and analyze PDF files
+
+🚀 Deployment
+- **Vercel**: Optimized configuration with static build
+- **Docker**: Containerized setup available
+- **Environment**: Production-ready with proper CORS and error handling
+
+🎨 Design System
+- **Color Palette**: Professional grays, blues, and greens
+- **Typography**: Clean sans-serif font (Inter)
+- **Spacing**: Consistent 8px grid system
+- **Components**: Atomic, reusable design patterns
+- **States**: Empty, loading, success, and error states
 
 🛠️ Getting Started
 1. **Install dependencies**
@@ -51,30 +91,6 @@ node app.js
 ```bash
 npm run build
 ```
-
-🎯 UI Components
-- **Header**: Professional branding with FileText icon and subtitle
-- **Left Column**: Resume text input with "Load Sample" button and "Analyze Resume" CTA
-- **Right Column**: Dynamic results display with:
-  - Empty state with dashed border and centered content
-  - Loading state with spinner animation
-  - Results state with organized info cards and colorful tags
-
-🔍 Analysis Features
-- **Contact Extraction**: Email and phone number detection
-- **Keyword Matching**: Identifies tech stack keywords (React, Node.js, etc.)
-- **Skill Extraction**: Parses skills section for relevant competencies
-- **Word Count**: Total word count analysis
-- **Structured Output**: Organized data presentation with visual tags
-
-📊 API Endpoints
-- `POST /api/analyze-text` - Analyze resume text
-- `POST /api/upload` - Upload and analyze PDF files
-
-🚀 Deployment
-- **Vercel**: Optimized configuration with static build
-- **Docker**: Containerized setup available
-- **Environment**: Production-ready with proper CORS and error handling
 
 🧪 Roadmap
 - [ ] PDF file upload integration

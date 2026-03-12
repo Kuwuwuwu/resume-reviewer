@@ -70,7 +70,7 @@ University of Technology | 2015-2019`);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 font-sans">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -91,12 +91,12 @@ University of Technology | 2015-2019`);
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Panel - Input */}
           <div className="space-y-4">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-lg font-semibold text-gray-900">Your Resume</h2>
                 <button
                   onClick={loadSample}
-                  className="flex items-center space-x-1 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  className="flex items-center space-x-1 text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
                 >
                   <UploadCloud className="w-4 h-4" />
                   <span>Load Sample</span>
@@ -107,7 +107,7 @@ University of Technology | 2015-2019`);
                 value={resumeText}
                 onChange={(e) => setResumeText(e.target.value)}
                 placeholder="Paste your resume text here..."
-                className="w-full h-96 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full h-96 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-sans"
               />
               
               <div className="flex space-x-3 mt-6">
@@ -133,7 +133,7 @@ University of Technology | 2015-2019`);
 
           {/* Right Panel - Results */}
           <div className="space-y-4">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 min-h-[500px]">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 min-h-[500px]">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Result</h2>
               
               {/* Empty State */}
