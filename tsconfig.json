@@ -1,9 +1,6 @@
 {
   "include": [
     "**/*",
-    "**/.server/**/*",
-    "**/.client/**/*",
-    ".react-router/types/**/*",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
@@ -14,20 +11,18 @@
       "ES2022"
     ],
     "types": [
-      "node",
-      "vite/client"
+      "node"
     ],
     "target": "ES2022",
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
-    "rootDirs": [
-      ".",
-      "./.react-router/types"
-    ],
     "baseUrl": ".",
     "paths": {
       "~/*": [
+        "./app/*"
+      ],
+      "@/*": [
         "./app/*"
       ]
     },
