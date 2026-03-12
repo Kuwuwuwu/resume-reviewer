@@ -1,14 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '/api' 
-  : 'http://localhost:3000/api';
+const API_BASE_URL = '/api';
 
 export const resumeService = {
   async analyzeResume(text) {
     try {
-      // For now, we'll create a mock API that processes text
-      // In a real implementation, you might want to send the text to your backend
       const response = await axios.post(`${API_BASE_URL}/analyze-text`, { text });
       return response.data;
     } catch (error) {
