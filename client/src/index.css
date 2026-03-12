@@ -1,4 +1,0 @@
-@import "tailwindcss/preflight";
-/* замість @tailwind base */
-@import "tailwindcss/utilities";
-/* включає і components, і utilities */

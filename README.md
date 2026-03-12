@@ -1,30 +1,30 @@
 📄 RESUME REVIEWER
 
-Resume Reviewer is a modern, professional web application that allows users to analyze resumes with AI-powered insights. Features a stunning 2-column interface with real-time text analysis, keyword extraction, and skill identification. Built with React + Vite on the frontend and Node.js + Express on the backend.
+Resume Reviewer is a modern, professional web application that allows users to analyze resumes with AI-powered insights. Features a stunning 2-column interface with real-time text analysis, keyword extraction, and skill identification. Built with Next.js App Router on the frontend and Node.js API routes on the backend.
 
 🚀 Tech Stack
-- **Frontend**: React, Vite, TailwindCSS, Lucide React
-- **Backend**: Node.js, Express, PDF parsing
+- **Frontend**: Next.js 15, React 18, TypeScript, TailwindCSS, Lucide React
+- **Backend**: Next.js API Routes, TypeScript
 - **UI**: Professional 2-column layout, responsive design, loading states
 - **Deployment**: Vercel-ready with optimized configuration
 
 📁 Project Structure
 resume-reviewer/
-├── src/                    # Frontend (React + Vite)
-│   ├── components/        # Reusable UI components
-│   │   ├── Badge.jsx
-│   │   ├── InfoCard.jsx
-│   │   ├── LoadingSpinner.jsx
-│   │   └── EmptyState.jsx
-│   ├── services/          # API service layer
-│   ├── App.jsx           # Main application component
-│   └── main.jsx          # React entry point
-├── server/                # Backend (Node.js + Express)
-│   ├── routes/           # API routes
-│   ├── controllers/      # Business logic
-│   └── app.js           # Express server
-├── api/                  # Vercel serverless functions
-├── vercel.json          # Vercel deployment config
+├── app/                    # Next.js App Router
+│   ├── api/              # API routes (Next.js serverless functions)
+│   │   └── analyze/       # Resume analysis endpoint
+│   ├── globals.css       # Global styles
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Main page component
+├── components/            # Reusable UI components
+│   ├── Badge.tsx
+│   ├── InfoCard.tsx
+│   ├── LoadingSpinner.tsx
+│   └── EmptyState.tsx
+├── public/               # Static assets
+├── next.config.ts       # Next.js configuration
+├── tailwind.config.ts   # Tailwind configuration
+├── postcss.config.js    # PostCSS configuration
 └── README.md
 
 ✨ Features
@@ -36,6 +36,7 @@ resume-reviewer/
 - **Sample Data**: "Load Sample" button for quick testing
 - **Responsive**: Works perfectly on desktop and mobile devices
 - **Component Architecture**: Modular, reusable components
+- **Next.js App Router**: Modern React framework with server-side rendering
 
 🎯 UI Components
 - **Header**: Professional branding with FileText icon and subtitle
@@ -55,14 +56,14 @@ resume-reviewer/
 - **Word Count**: Total word count analysis
 - **Structured Output**: Organized data presentation with visual tags
 
-📊 API Endpoints
-- `POST /api/analyze-text` - Analyze resume text
-- `POST /api/upload` - Upload and analyze PDF files
+📊 API Routes
+- `POST /api/analyze` - Analyze resume text (Next.js API route)
 
 🚀 Deployment
-- **Vercel**: Optimized configuration with static build
-- **Docker**: Containerized setup available
-- **Environment**: Production-ready with proper CORS and error handling
+- **Vercel**: Optimized configuration for Next.js deployment
+- **Zero Configuration**: Works out-of-the-box with Vercel
+- **Serverless Functions**: API routes automatically deploy as serverless functions
+- **Static Generation**: Optimized build process
 
 🎨 Design System
 - **Color Palette**: Professional grays, blues, and greens
@@ -75,22 +76,35 @@ resume-reviewer/
 1. **Install dependencies**
 ```bash
 npm install
-cd server && npm install
 ```
 
-2. **Run locally**
+2. **Run development server**
 ```bash
-# Frontend (in root directory)
 npm run dev
-
-# Backend (in server directory)
-node app.js
 ```
 
 3. **Build for production**
 ```bash
 npm run build
 ```
+
+4. **Start production server**
+```bash
+npm start
+```
+
+🔧 Development
+- **TypeScript**: Full type safety throughout the application
+- **ESLint**: Code quality and consistency
+- **TailwindCSS**: Utility-first CSS framework
+- **Hot Reload**: Fast development experience
+
+🧪 Migration Notes
+- **Migrated from Vite to Next.js App Router**
+- **Converted Express API to Next.js API routes**
+- **Updated TailwindCSS to v4 with proper PostCSS configuration**
+- **Removed Vite-specific configuration files**
+- **Optimized for Vercel deployment**
 
 🧪 Roadmap
 - [ ] PDF file upload integration
