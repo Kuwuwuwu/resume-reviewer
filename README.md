@@ -1,59 +1,86 @@
 📄 RESUME REVIEWER
 
-Resume Reviewer is a web application that allows users to upload a resume and receive a basic analysis — including word count, keyword detection, and a preview of the content. Built with React + Vite on the frontend and Node.js + Express on the backend, the project is fully containerized using Docker.
+Resume Reviewer is a modern, professional web application that allows users to analyze resumes with AI-powered insights. Features a clean 2-column interface with real-time text analysis, keyword extraction, and skill identification. Built with React + Vite on the frontend and Node.js + Express on the backend.
 
 🚀 Tech Stack
-- Frontend: React, Vite, TailwindCSS
-- Backend: Node.js, Express
-- DevOps: Docker, CI/CD-ready
-- UI Features: Responsive design, theme switching (light/dark)
+- **Frontend**: React, Vite, TailwindCSS, Lucide React
+- **Backend**: Node.js, Express, PDF parsing
+- **UI**: Modern 2-column layout, responsive design, loading states
+- **Deployment**: Vercel-ready with optimized configuration
+
 📁 Project Structure
 resume-reviewer/
-├── client/           # Frontend (React + Vite)
-│   ├── src/
-│   ├── index.html
-│   ├── tailwind.config.js
-│   └── ...
-├── server/           # Backend (Node.js + Express)
-│   ├── routes/
-│   ├── app.js
-│   └── ...
-├── docker-compose.yml
+├── src/                    # Frontend (React + Vite)
+│   ├── components/        # Reusable UI components
+│   ├── services/          # API service layer
+│   ├── App.jsx           # Main application component
+│   └── main.jsx          # React entry point
+├── server/                # Backend (Node.js + Express)
+│   ├── routes/           # API routes
+│   ├── controllers/      # Business logic
+│   └── app.js           # Express server
+├── vercel.json          # Vercel deployment config
 └── README.md
 
-
+✨ Features
+- **Professional UI**: Clean 2-column layout with modern design
+- **Text Analysis**: Paste resume text for instant analysis
+- **Smart Extraction**: Automatically detects email, phone, keywords, and skills
+- **Loading States**: Beautiful loading animations and empty states
+- **Error Handling**: Graceful error states with user-friendly messages
+- **Sample Data**: "Load Sample" button for quick testing
+- **Responsive**: Works perfectly on desktop and mobile devices
 
 🛠️ Getting Started
-1. Install dependencies
-cd client
+1. **Install dependencies**
+```bash
 npm install
-cd ../server
-npm install
+cd server && npm install
+```
 
-
-2. Run locally (without Docker)
-# Frontend
-cd client
+2. **Run locally**
+```bash
+# Frontend (in root directory)
 npm run dev
 
-# Backend
-cd ../server
+# Backend (in server directory)
 node app.js
+```
 
+3. **Build for production**
+```bash
+npm run build
+```
 
-3. Run with Docker
-docker-compose up --build
+🎯 UI Components
+- **Header**: Professional branding with FileText icon and subtitle
+- **Left Column**: Resume text input with "Load Sample" button and "Analyze Resume" CTA
+- **Right Column**: Dynamic results display with:
+  - Empty state with dashed border and centered content
+  - Loading state with spinner animation
+  - Results state with organized info cards and colorful tags
 
+🔍 Analysis Features
+- **Contact Extraction**: Email and phone number detection
+- **Keyword Matching**: Identifies tech stack keywords (React, Node.js, etc.)
+- **Skill Extraction**: Parses skills section for relevant competencies
+- **Word Count**: Total word count analysis
+- **Structured Output**: Organized data presentation with visual tags
 
+📊 API Endpoints
+- `POST /api/analyze-text` - Analyze resume text
+- `POST /api/upload` - Upload and analyze PDF files
 
-📤 Resume Upload Features
-- Supports .txt, .pdf, .docx
-- Displays keyword matches and word count
-- Shows resume preview in-browser
+🚀 Deployment
+- **Vercel**: Optimized configuration with static build
+- **Docker**: Containerized setup available
+- **Environment**: Production-ready with proper CORS and error handling
 
 🧪 Roadmap
-- [ ] Backend parsing of real resume content
-- [ ] Keyword scoring and tech stack matching
-- [ ] User authentication and upload history
-- [ ] Export results to PDF or JSON
+- [ ] PDF file upload integration
+- [ ] Advanced keyword scoring algorithms
+- [ ] User authentication and analysis history
+- [ ] Export results to PDF/JSON
+- [ ] Resume comparison features
+- [ ] ATS (Applicant Tracking System) optimization tips
 

@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const uploadRoute = require('./routes/upload');
+const analyzeTextRoute = require('./routes/analyze-text');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.use('/api/upload', uploadRoute);
+app.use('/api/analyze-text', analyzeTextRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
