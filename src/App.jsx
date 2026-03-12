@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { FileText, Sparkles, Upload, FileCheck, Mail, Phone, Hash, Briefcase } from 'lucide-react';
+import { FileText, Sparkles, UploadCloud, Mail, Phone, Hash, RotateCcw } from 'lucide-react';
 import { resumeService } from './services/resumeService';
+import InfoCard from './components/InfoCard';
+import Badge from './components/Badge';
+import LoadingSpinner from './components/LoadingSpinner';
+import EmptyState from './components/EmptyState';
 
 function App() {
   const [resumeText, setResumeText] = useState('');
@@ -16,7 +20,6 @@ function App() {
       setResult(analysisResult);
     } catch (error) {
       console.error('Analysis failed:', error);
-      // Show error state to user
       setResult({
         fileName: 'Error',
         wordCount: 0,
@@ -61,18 +64,23 @@ Bachelor of Science in Computer Science
 University of Technology | 2015-2019`);
   };
 
+  const clearText = () => {
+    setResumeText('');
+    setResult(null);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-slate-200">
+      <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-3">
             <div className="p-2 bg-blue-50 rounded-lg">
               <FileText className="w-6 h-6 text-blue-600" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Resume Reviewer</h1>
-              <p className="text-sm text-slate-600">AI-powered resume analysis and insights</p>
+              <h1 className="text-2xl font-bold text-gray-900">Resume Reviewer</h1>
+              <p className="text-sm text-gray-600">AI-powered resume analysis and insights</p>
             </div>
           </div>
         </div>
@@ -80,17 +88,18 @@ University of Technology | 2015-2019`);
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left Column - Input */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left Panel - Input */}
           <div className="space-y-4">
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold text-slate-900">Your Resume</h2>
+                <h2 className="text-lg font-semibold text-gray-900">Your Resume</h2>
                 <button
                   onClick={loadSample}
-                  className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  className="flex items-center space-x-1 text-sm text-blue-600 hover:text-blue-700 font-medium"
                 >
-                  Load Sample
+                  <UploadCloud className="w-4 h-4" />
+                  <span>Load Sample</span>
                 </button>
               </div>
               
@@ -98,43 +107,40 @@ University of Technology | 2015-2019`);
                 value={resumeText}
                 onChange={(e) => setResumeText(e.target.value)}
                 placeholder="Paste your resume text here..."
-                className="w-full h-96 p-4 border border-slate-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                className="w-full h-96 p-4 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
               />
               
-              <button
-                onClick={analyzeResume}
-                disabled={!resumeText.trim() || loading}
-                className="w-full mt-6 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-medium py-4 px-6 rounded-full flex items-center justify-center space-x-2 transition-colors"
-              >
-                <Sparkles className="w-5 h-5" />
-                <span>{loading ? 'Analyzing...' : 'Analyze Resume'}</span>
-              </button>
+              <div className="flex space-x-3 mt-6">
+                <button
+                  onClick={analyzeResume}
+                  disabled={!resumeText.trim() || loading}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-medium py-4 px-6 rounded-full flex items-center justify-center space-x-2 transition-colors"
+                >
+                  <Sparkles className="w-5 h-5" />
+                  <span>{loading ? 'Analyzing...' : 'Analyze Resume'}</span>
+                </button>
+                
+                <button
+                  onClick={clearText}
+                  disabled={!resumeText.trim() || loading}
+                  className="px-6 py-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <RotateCcw className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Right Column - Results */}
+          {/* Right Panel - Results */}
           <div className="space-y-4">
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 min-h-[500px]">
-              <h2 className="text-lg font-semibold text-slate-900 mb-4">Result</h2>
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 min-h-[500px]">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">Result</h2>
               
               {/* Empty State */}
-              {!result && !loading && (
-                <div className="border-2 border-dashed border-slate-300 rounded-lg p-12 text-center">
-                  <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FileCheck className="w-8 h-8 text-slate-400" />
-                  </div>
-                  <p className="text-slate-600 font-medium">Ready to Analyze</p>
-                  <p className="text-sm text-slate-500 mt-2">Paste your resume and click Analyze to get started</p>
-                </div>
-              )}
+              {!result && !loading && <EmptyState />}
 
               {/* Loading State */}
-              {loading && (
-                <div className="flex flex-col items-center justify-center py-20">
-                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
-                  <p className="text-slate-600">Analyzing your resume...</p>
-                </div>
-              )}
+              {loading && <LoadingSpinner />}
 
               {/* Results State */}
               {result && !loading && (
@@ -146,75 +152,58 @@ University of Technology | 2015-2019`);
                     </div>
                   ) : (
                     <>
-                      {/* Info Cards */}
+                      {/* Info Cards Grid */}
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-slate-50 rounded-lg p-4">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <FileText className="w-4 h-4 text-slate-600" />
-                            <span className="text-sm font-medium text-slate-600">File Name</span>
-                          </div>
-                          <p className="text-slate-900 font-medium">{result.fileName}</p>
-                        </div>
-                        
-                        <div className="bg-slate-50 rounded-lg p-4">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <Hash className="w-4 h-4 text-slate-600" />
-                            <span className="text-sm font-medium text-slate-600">Word Count</span>
-                          </div>
-                          <p className="text-slate-900 font-medium">{result.wordCount}</p>
-                        </div>
-                        
-                        <div className="bg-slate-50 rounded-lg p-4">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <Mail className="w-4 h-4 text-slate-600" />
-                            <span className="text-sm font-medium text-slate-600">Email</span>
-                          </div>
-                          <p className="text-slate-900 font-medium text-sm">{result.email}</p>
-                        </div>
-                        
-                        <div className="bg-slate-50 rounded-lg p-4">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <Phone className="w-4 h-4 text-slate-600" />
-                            <span className="text-sm font-medium text-slate-600">Phone</span>
-                          </div>
-                          <p className="text-slate-900 font-medium">{result.phone}</p>
-                        </div>
+                        <InfoCard
+                          icon={FileText}
+                          label="File Name"
+                          value={result.fileName}
+                        />
+                        <InfoCard
+                          icon={Hash}
+                          label="Word Count"
+                          value={result.wordCount}
+                        />
+                        <InfoCard
+                          icon={Mail}
+                          label="Email"
+                          value={result.email}
+                        />
+                        <InfoCard
+                          icon={Phone}
+                          label="Phone"
+                          value={result.phone}
+                        />
                       </div>
 
                       {/* Keywords */}
                       <div>
-                        <h3 className="text-sm font-medium text-slate-600 mb-3">Keywords Found</h3>
+                        <h3 className="text-sm font-medium text-gray-600 mb-3">Keywords Found</h3>
                         <div className="flex flex-wrap gap-2">
-                          {result.keywords.length > 0 ? (
+                          {result.keywords && result.keywords.length > 0 ? (
                             result.keywords.map((keyword, index) => (
-                              <span
-                                key={index}
-                                className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium"
-                              >
+                              <Badge key={index} variant="blue">
                                 {keyword}
-                              </span>
+                              </Badge>
                             ))
                           ) : (
-                            <p className="text-slate-500 text-sm">No keywords found</p>
+                            <p className="text-gray-500 text-sm">No keywords found</p>
                           )}
                         </div>
                       </div>
 
                       {/* Skills */}
                       <div>
-                        <h3 className="text-sm font-medium text-slate-600 mb-3">Skills Extracted</h3>
+                        <h3 className="text-sm font-medium text-gray-600 mb-3">Skills Extracted</h3>
                         <div className="flex flex-wrap gap-2">
-                          {result.skills.length > 0 ? (
+                          {result.skills && result.skills.length > 0 ? (
                             result.skills.map((skill, index) => (
-                              <span
-                                key={index}
-                                className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium"
-                              >
+                              <Badge key={index} variant="green">
                                 {skill}
-                              </span>
+                              </Badge>
                             ))
                           ) : (
-                            <p className="text-slate-500 text-sm">No skills extracted</p>
+                            <p className="text-gray-500 text-sm">No skills extracted</p>
                           )}
                         </div>
                       </div>
